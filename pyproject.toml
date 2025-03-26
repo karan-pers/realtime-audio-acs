@@ -1,0 +1,16 @@
+[project]
+name = "realtime-audio-acs"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "azure-communication-callautomation==1.4.0b1",
+    "azure-eventgrid>=4.21.0",
+    "azure-identity>=1.21.0",
+    "azure-search>=1.0.0b2",
+    "azure-search-documents>=11.5.2",
+    "azure-storage-blob>=12.25.0",
+    "quart>=0.20.0",
+    "semantic-kernel[all,realtime,search]>=1.25.0",
+]
