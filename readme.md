@@ -56,7 +56,7 @@ Copy the `.env.example` file to `.env` and update the following values:
 
 #### Setting up Azure OpenAI embedding model
 
-Copy the `.env.example` file to `embedding.env` and update the following values:
+Copy the `.env.embedding.example` file to `embedding.env` and update the following values:
 
 1. `AZURE_OPENAI_EMBEDDING_DEPLOYMENT_NAME`: Azure OpenAI Embedding deployment name.
 2. `AZURE_OPENAI_ENDPOINT`: Base url of the app. (For local development use the dev tunnel url from the step above)
