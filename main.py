@@ -35,7 +35,7 @@ from semantic_kernel.functions import kernel_function
 from semantic_kernel.filters.filter_types import FilterTypes
 from semantic_kernel.filters.functions.function_invocation_context import FunctionInvocationContext
 
-from plugins.HotelSearch import HotelSearch
+from plugins.hotel_search import HotelSearch
 
 # Callback events URI to handle callback events.
 CALLBACK_URI_HOST = "https://4xdnbml2-8080.euw.devtunnels.ms"
@@ -46,13 +46,6 @@ acs_client = CallAutomationClient.from_connection_string(
 app = Quart(__name__)
 
 kernel = Kernel()
-
-# embeddings = AzureTextEmbedding(
-#         service_id="embedding", deployment_name="text-embedding-3-small",env_file_path="embedding.env")
-# kernel.add_service(embeddings)
-# vectorizer = VectorStoreRecordUtils(kernel)
-
-# kernel.add_functions(plugin_name="azure_ai_search",functions=AIsearchPlugin().kernel_functions())
 
 # This filter will log all calls to the Azure AI Search plugin.
 # This allows us to see what parameters are being passed to the plugin.
@@ -298,9 +291,6 @@ async def callbacks(contextId):
 @app.route("/")
 def home():
     return "Hello SKxACS CallAutomation!"
-
-
-# region: Main
 
 if __name__ == "__main__":
     app.logger.setLevel(INFO)

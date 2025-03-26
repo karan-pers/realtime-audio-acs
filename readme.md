@@ -4,6 +4,11 @@ This application demonstrates the integration of Azure Communication Services wi
 
 This implementation is inspired by original ACS openAI implementation found [here](https://github.com/Azure-Samples/communication-services-python-quickstarts/tree/main/callautomation-openai-sample).
 
+## Highover Architecture
+
+![image info](./audio-realtime.png)
+
+
 ## Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
@@ -11,6 +16,7 @@ This implementation is inspired by original ACS openAI implementation found [her
 - A [phone number](https://learn.microsoft.com/en-us/azure/communication-services/quickstarts/telephony/get-phone-number) in your Azure Communication Services resource that can get inbound calls. NB: phone numbers are not available in free subscriptions.
 - [Python](https://www.python.org/downloads/) 3.9 or above.
 - An Azure OpenAI Resource and Deployed Model. See [instructions](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/create-resource?pivots=web-portal).
+- An Azure AI Search Deployment with Vector embedding Model. See [instructions](ai_search\README.md).
 - Install `uv`, see [the uv docs](https://docs.astral.sh/uv/getting-started/installation/).
 
 ## To run the app
@@ -32,6 +38,8 @@ devtunnel host
 
 ### Configuring application
 
+#### Setting up ACS, Azure AI Foundry and AI Search
+
 Copy the `.env.example` file to `.env` and update the following values:
 
 1. `ACS_CONNECTION_STRING`: Azure Communication Service resource's connection string.
@@ -40,6 +48,21 @@ Copy the `.env.example` file to `.env` and update the following values:
 4. `AZURE_OPENAI_REALTIME_DEPLOYMENT_NAME`: Azure Open AI deployment name
 5. `AZURE_OPENAI_API_VERSION`: Azure Open AI API version, this should be one that includes the realtime api, for instance '2024-10-01-preview'
 6. `AZURE_OPENAI_API_KEY`: Azure Open AI API key, optionally, you can also use Entra Auth.
+7. `AZURE_AI_SEARCH_ENDPOINT`: Azure AI Search endpoint.
+8. `AZURE_AI_SEARCH_SERVICE`: Azure AI Search service name.
+9. `AZURE_AI_SEARCH_API_KEY`: Azure AI Search API key.
+10. `AZURE_AI_SEARCH_INDEX_NAME`: Index name for the collection in Azure AI Search.
+
+
+#### Setting up Azure OpenAI embedding model
+
+Copy the `.env.example` file to `embedding.env` and update the following values:
+
+1. `AZURE_OPENAI_EMBEDDING_DEPLOYMENT_NAME`: Azure OpenAI Embedding deployment name.
+2. `AZURE_OPENAI_ENDPOINT`: Base url of the app. (For local development use the dev tunnel url from the step above)
+3. `AZURE_OPENAI_API_KEY`: Azure Open AI service endpoint
+4. `AZURE_OPENAI_API_VERSION`: Azure Open AI deployment name
+
 
 ## Run the app
 
