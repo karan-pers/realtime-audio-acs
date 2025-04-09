@@ -38,7 +38,7 @@ from semantic_kernel.filters.functions.function_invocation_context import Functi
 from plugins.hotel_search import HotelSearch
 
 # Callback events URI to handle callback events.
-CALLBACK_URI_HOST = "https://4xdnbml2-8080.euw.devtunnels.ms"
+CALLBACK_URI_HOST = "https://0lx41ml9-8080.euw.devtunnels.ms"
 CALLBACK_EVENTS_URI = CALLBACK_URI_HOST + "/api/callbacks"
 
 acs_client = CallAutomationClient.from_connection_string(
@@ -50,10 +50,13 @@ kernel = Kernel()
 # This filter will log all calls to the Azure AI Search plugin.
 # This allows us to see what parameters are being passed to the plugin.
 # And this gives us a way to debug the search experience and if necessary tweak the parameters and descriptions.
+
+
 @kernel.filter(filter_type=FilterTypes.FUNCTION_INVOCATION)
 async def log_search_filter(context: FunctionInvocationContext, next: Coroutine[FunctionInvocationContext, any, None]):
     if context.function.plugin_name == "knowledge_base_hotel":
-        print(f"Calling Azure AI Search ({context.function.name}) with arguments:")
+        print(
+            f"Calling Azure AI Search ({context.function.name}) with arguments:")
         for arg in context.arguments:
             if arg in ("user_input", "chat_history"):
                 continue
@@ -61,6 +64,7 @@ async def log_search_filter(context: FunctionInvocationContext, next: Coroutine[
         await next(context)
     else:
         await next(context)
+
 
 class HelperPlugin:
     """Helper plugin for the Semantic Kernel."""
@@ -170,8 +174,9 @@ async def ws():
     # create the client, using the audio callback
     client = AzureRealtimeWebsocket()
     settings = AzureRealtimeExecutionSettings(
-        instructions="""You are a helpful assistant. 
-        The user is listening to answers with audio, so it's important that answers are as short as possible, a single sentence if at all possible. """,
+        instructions="""You are a helpful Hotel Concierge assistant, and your name is Myna. 
+        The user is listening to answers with audio, so it's important that answers are as short as possible, a single sentence if at all possible.
+        Introduce yourself when the conversation begins """,
         turn_detection={"type": "server_vad"},
         voice="shimmer",
         input_audio_format="pcm16",
@@ -291,6 +296,7 @@ async def callbacks(contextId):
 @app.route("/")
 def home():
     return "Hello SKxACS CallAutomation!"
+
 
 if __name__ == "__main__":
     app.logger.setLevel(INFO)

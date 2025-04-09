@@ -19,11 +19,6 @@ This implementation is inspired by original ACS openAI implementation found [her
 - An Azure AI Search Deployment with Vector embedding Model. See [instructions](ai_search\README.md).
 - Install `uv`, see [the uv docs](https://docs.astral.sh/uv/getting-started/installation/).
 
-## To run the app
-
-1. Open an instance of PowerShell, Windows Terminal, Command Prompt or equivalent and navigate to the directory that you would like to clone the sample to.
-2. git clone `https://github.com/microsoft/semantic-kernel.git`.
-3. Navigate to `python/samples/demos/call_automation` folder
 
 ### Setup and host your Azure DevTunnel
 
